@@ -292,3 +292,106 @@ img, video {
    top: 0.5rem;
    transform: rotate(-135deg);
 }
+
+.card-ecommerce .card-img-top {
+   width: 85%;
+   padding: 95px 45px 40px;
+   max-width: 100%;
+   height: auto;
+}
+
+.card-ecommerce {
+ border: 1px solid #e2e2e2;
+ border-radius: 10px;
+ padding: 0 0 1rem 0;
+}
+
+.card-ecommerce:before {
+ content: "";
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ bottom: 0;
+ left: 0;
+ border: 2px solid #059;
+ border-radius: 10px;
+ visibility: hidden;
+ -webkit-transform: scaleX(0);
+ -ms-transform: scaleX(0);
+ transform: scaleX(0);
+ -webkit-transition: all 0.2s ease-in-out 0s;
+ -o-transition: all 0.2s ease-in-out 0s;
+ transition: all 0.2s ease-in-out 0s;
+ z-index: -1;
+}
+
+.card-ecommerce:hover:before {
+ visibility: visible;
+ -webkit-transform: scaleX(1);
+ -ms-transform: scaleX(1);
+ transform: scaleX(1);
+}
+
+.card-body-cascade a{
+ color: #0f4a79;
+ font-size: 17px;
+ font-weight: bold;
+ display: inline-block;
+ width: 100%;
+ overflow: hidden;
+}
+
+.card-body-cascade {
+   padding: 1rem 2rem;
+}
+
+.card-body-cascade .price {
+ color: #059;
+ font-size: 18px;
+ font-weight: 500;
+}
+
+.card-ecommerce .btn {
+   font-size: 12px;
+   line-height: 20px;
+   font-weight: 500;
+   white-space: nowrap;
+   text-align: center;
+   display: block;
+   width: 100%;
+   border-radius: 0;
+}
+
+.card-ecommerce .add-to-card {
+ color: #fff;
+ border: 1px solid #059;
+ background-color: #059;
+ text-transform: uppercase;
+ padding: 14px 10px;
+ border-radius: 6px;
+ font-weight: bold;
+}
+
+.card-ecommerce .view-btn {
+ color: #059;
+ border: 2px solid #059;
+ text-transform: uppercase;
+ padding: 13px 10px;
+ border-radius: 6px;
+ font-weight: bold;
+}
+
+.stock-details {
+ font-size: 12px;
+ color: #9e9e9e;
+ text-transform: uppercase;
+ margin-left: 0.8rem;
+}
+
+a {
+ text-decoration: none;
+}
+
+.moviecard {
+   margin-top: 100px;
+}

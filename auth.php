@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 if (isset($_POST['email']) && isset($_POST['password']) && $_POST['password'] !== '') {
     include 'dbConnect.php';
@@ -19,8 +20,20 @@ if (isset($_POST['email']) && isset($_POST['password']) && $_POST['password'] !=
     $statement->execute();
 
     if ($statement->rowCount() === 1) {
-        echo 'yeah';
+        $user = $statement->fetch();
+
+        $user_email = $user['email'];
+        $user_password = $user['password'];
+
+        if (!password_verify($password, $user_password)) {
+            $_SESSION['user_email'] = $user_email;
+            header("Location: ./index.php");
+        } else {
+            $errorMessage = "Incorrect Email or password";
+            header("Location: ./login.php?error=$errorMessage");
+        }
     } else {
-        echo 'No';
+        $errorMessage = "Incorrect Email or password";
+        header("Location: ./login.php?error=$errorMessage");
     }
 }
