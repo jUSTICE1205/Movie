@@ -1,3 +1,11 @@
+<?php
+
+include "dbConnect.php";
+include "query.php";
+
+$comments = getall_comments($db);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,22 +49,31 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">Clavan</th>
-                                <td>Good </td>
-                                <td>Movie</td>
-                                <td>1</td>
-                                <td>
-                                    <div class="delete">
-                                        <form>
-                                            <button type="submit">Visible</button>
-                                        </form>
-                                        <form>
-                                            <button type="submit">Delete</button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
+                            <?php foreach ($comments as $comment) { ?>
+                                <tr>
+                                    <th scope="row"><?= $comment['name'] ?></th>
+                                    <td><?= $comment['comment'] ?> </td>
+                                    <td><?= $comment['movie_id'] ?></td>
+                                    <td>
+                                        <?php if ($comment['display'] === 1) {
+                                            echo 'True';
+                                        } else {
+                                            echo 'False';
+                                        }
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <div class="delete">
+                                            <form>
+                                                <button type="submit">Visible</button>
+                                            </form>
+                                            <form>
+                                                <button type="submit">Delete</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
 
                         </tbody>
                     </table>

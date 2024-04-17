@@ -56,3 +56,26 @@ function get_comments($db, $id)
     // Return the movie data
     return $movieComments;
 }
+
+
+function getall_comments($db)
+{
+    // Use single quotes for string literals in SQL queries
+    $query = "SELECT * FROM comments ";
+
+    // Prepare and execute the query
+    $statement = $db->prepare($query);
+    $statement->execute();
+
+    // Check if any rows were returned
+    if ($statement->rowCount() > 0) {
+        // Fetch all rows as an associative array
+        $movieComments = $statement->fetchAll(PDO::FETCH_ASSOC);
+    } else {
+        // No rows found, set $movie to a default value
+        $movieComments = 0;
+    }
+
+    // Return the movie data
+    return $movieComments;
+}
