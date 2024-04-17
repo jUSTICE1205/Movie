@@ -106,19 +106,38 @@ $comments = get_comments($db, $_GET['id']);
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Modal Heading</h4>
+                    <h4 class="modal-title">Add Review</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
+                <div class="modal-body p-4">
+                    <form action="http://localhost:81/movie/addComment.php/?id=<?= $_GET['id'] ?>" method="post">
+                        <!-- Email input -->
+                        <?php if (!isset($_SESSION['user_email'])) { ?>
+                            <div data-mdb-input-init class="form-outline mb-4">
 
-                <!-- Modal body -->
-                <div class="modal-body">
-                    Modal body..
+                                <label class="form-label" for="name">Name</label>
+                                <input type="name" id="name" name="name" class="form-control" required />
+                            </div>
+                        <?php } else { ?>
+                            <input type="email" id="name" name="name" class="form-control" value=<?= $_SESSION['user_email'] ?> hidden />
+                        <?php } ?>
+
+                        <input type="text" id="movie" name="movie" class="form-control" value=<?= $_GET['id'] ?>
+                            hidden />
+                        <!-- password input -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+
+                            <label class="form-label" for="comment">Comment</label>
+                            <textarea type="password" id="comment" name="comment" class="form-control"
+                                required></textarea>
+                        </div>
+
+                        <!-- Submit button -->
+                        <button type="submit" data-mdb-button-init data-mdb-ripple-init
+                            class="btn btn-primary btn-block">Add</button>
+                    </form>
                 </div>
 
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                </div>
 
             </div>
         </div>

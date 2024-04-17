@@ -38,7 +38,7 @@ function get_movie($db, $id)
 function get_comments($db, $id)
 {
     // Use single quotes for string literals in SQL queries
-    $query = "SELECT * FROM comments WHERE movie_id = $id";
+    $query = "SELECT * FROM comments WHERE movie_id = $id AND display = 1";
 
     // Prepare and execute the query
     $statement = $db->prepare($query);
