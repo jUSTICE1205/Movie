@@ -64,8 +64,15 @@ $comments = getall_comments($db);
                                     </td>
                                     <td>
                                         <div class="delete">
-                                            <form>
-                                                <button type="submit">Visible</button>
+                                            <form action="displayComment.php" method="post">
+                                                <input type="text" name="id" id="id" value=<?= $comment['id'] ?> hidden />
+                                                <?php if ($comment['display'] === 1) { ?>
+                                                    <input type="text" name="display" value=0 hidden />
+                                                    <button type="submit">Disable</button>
+                                                <?php } else { ?>
+                                                    <input type="text" name="display" value=1 hidden />
+                                                    <button type="submit">Enable</button>
+                                                <?php } ?>
                                             </form>
                                             <form action="./deleteComment.php" method="post">
                                                 <input type="text" name="id" id="id" value=<?= $comment['id'] ?> hidden />
