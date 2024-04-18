@@ -66,7 +66,8 @@ $movies = get_all_movies($db);
                         </div>
                         <div class="card-body card-body-cascade">
                             <div class="d-flex justify-content-between text-nowrap">
-                                <a href="./moviedetail.php/?id=<?= $movie['id'] ?>"><?= $movie['name'] ?></a>
+                                <a
+                                    href="./moviedetail.php/?id=<?= $movie['id'] ?>&movie_name=<?= $movie['name'] ?>"><?= $movie['name'] ?></a>
                             </div> <!-- Card Description-->
                             <p class="price">$15</p>
                         </div>
