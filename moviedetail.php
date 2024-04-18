@@ -46,6 +46,9 @@ $comments = get_comments($db, $_GET['id']);
                             <button class="shadow btn custom-btn">Add to cart</button>
                         </div>
                     </div>
+                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#mModal">
+                        +
+                    </button>
 
 
 
@@ -56,6 +59,7 @@ $comments = get_comments($db, $_GET['id']);
                     <p class="details-title text-color mb-1">Movie Details</p>
                     <p class="description"><?= $movie[0]['description'] ?></p>
                 </div>
+
 
 
             </div>
@@ -143,6 +147,77 @@ $comments = get_comments($db, $_GET['id']);
         </div>
     </div>
 
+    <!-- The Modal -->
+    <div class="modal" id="mModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Movie Information</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body p-4" id="movieTableContainer"></div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
 </body>
+
+
+<script>
+    const apiKey = '45362a84'; // Replace 'YOUR_API_KEY' with your actual API key
+    const title = 'John Wick'; // Movie title
+
+    fetch(`https://www.omdbapi.com/?t=${encodeURIComponent(title)}&apikey=${apiKey}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Handle the JSON response
+            console.log(data); // Log the movie data to the console
+
+            // Extract the desired properties
+            const { Actors, Director, Title, Country, Year, imdbRating
+            } = data;
+
+            // Create a table element
+            const table = document.createElement('table');
+
+            // Create table rows for each property
+            createRow('Actor', Actors);
+            createRow('Director', Director);
+            createRow('Title', Title);
+            createRow('Country', Country);
+            createRow('Year', Year);
+            createRow('imdbRating', imdbRating);
+            // Function to create a table row
+            function createRow(label, value) {
+                const row = table.insertRow();
+                const cell1 = row.insertCell(0);
+                const cell2 = row.insertCell(1);
+                cell1.textContent = label;
+                cell2.textContent = value;
+            }
+
+            // Append the table to the container element
+            const container = document.getElementById('movieTableContainer');
+            container.appendChild(table);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            // Handle errors
+        });
+</script>
 
 </html>
