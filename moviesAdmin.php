@@ -3,9 +3,9 @@
 include "dbConnect.php";
 include "query.php";
 
-$comments = getall_comments($db);
+$movies = get_all_movies($db)
 
-?>
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,13 +24,14 @@ $comments = getall_comments($db);
         <div class="dashboard-nav">
             <header><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a><a href="#" class="brand-logo"><i
                         class="fas fa-anchor"></i> <span>Admin</span></a></header>
-            <nav class="dashboard-nav-list"><a href="#" class="dashboard-nav-item"><i class="fas fa-home"></i>
-                    Movies </a><a href="#" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i>
+            <nav class="dashboard-nav-list"><a href="moviesAdmin.php" class="dashboard-nav-item active"><i
+                        class="fas fa-home"></i>
+                    Movies </a><a href="#" class="dashboard-nav-item "><i class="fas fa-tachometer-alt"></i>
                     Actor
                 </a><a href="#" class="dashboard-nav-item"><i class="fas fa-file-upload"></i> Genre </a>
 
 
-                <a href="#" class="dashboard-nav-item"><i class="fas fa-cogs"></i> Comments </a>
+                <a href="commentAdmin.php" class="dashboard-nav-item"><i class="fas fa-cogs"></i> Comments </a>
                 <a href="#" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i> Logout </a>
             </nav>
         </div>
@@ -42,40 +43,23 @@ $comments = getall_comments($db);
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">Name</th>
-                                <th scope="col">Comment</th>
-                                <th scope="col">Movie_id</th>
-                                <th scope="col">Visible</th>
+                                <th scope="col">Description</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($comments as $comment) { ?>
+                            <?php foreach ($movies as $movie) { ?>
                                 <tr>
-                                    <th scope="row"><?= $comment['name'] ?></th>
-                                    <td><?= $comment['comment'] ?> </td>
-                                    <td><?= $comment['movie_id'] ?></td>
-                                    <td>
-                                        <?php if ($comment['display'] === 1) {
-                                            echo 'True';
-                                        } else {
-                                            echo 'False';
-                                        }
-                                        ?>
-                                    </td>
+                                    <td><?= $movie['name'] ?> </td>
+                                    <td><?= $movie['description'] ?></td>
                                     <td>
                                         <div class="delete">
                                             <form action="displayComment.php" method="post">
-                                                <input type="text" name="id" id="id" value=<?= $comment['id'] ?> hidden />
-                                                <?php if ($comment['display'] === 1) { ?>
-                                                    <input type="text" name="display" value=0 hidden />
-                                                    <button type="submit">Disable</button>
-                                                <?php } else { ?>
-                                                    <input type="text" name="display" value=1 hidden />
-                                                    <button type="submit">Enable</button>
-                                                <?php } ?>
+                                                <input type="text" name="id" id="id" value=<?= $movie['id'] ?> hidden />
+                                                <button type="submit">Edit</button>
                                             </form>
                                             <form action="./deleteComment.php" method="post">
-                                                <input type="text" name="id" id="id" value=<?= $comment['id'] ?> hidden />
+                                                <input type="text" name="id" id="id" value=<?= $movie['id'] ?> hidden />
                                                 <button type="submit">Delete</button>
                                             </form>
                                         </div>
