@@ -47,7 +47,7 @@ $comments = get_comments($db, $_GET['id']);
                         </div>
                     </div>
                     <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#mModal">
-                        +
+                        More Info
                     </button>
 
 
