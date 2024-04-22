@@ -17,5 +17,5 @@ $statement->bindValue(':id', $id);
 
 // Execute the INSERT prepared statement.
 $statement->execute();
-header("Location: admin.php");
+header("Location: http://localhost:81/movie/commentAdmin.php");
 exit;

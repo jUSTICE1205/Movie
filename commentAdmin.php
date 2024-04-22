@@ -65,7 +65,7 @@ $comments = getall_comments($db);
                                     </td>
                                     <td>
                                         <div class="delete">
-                                            <form action="displayComment.php" method="post">
+                                            <form action="http://localhost:81/movie/displayComment.php" method="post">
                                                 <input type="text" name="id" id="id" value=<?= $comment['id'] ?> hidden />
                                                 <?php if ($comment['display'] === 1) { ?>
                                                     <input type="text" name="display" value=0 hidden />
