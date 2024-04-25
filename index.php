@@ -32,7 +32,7 @@ $movies = get_all_movies($db);
             </div>
             <div class="menu" id="menu">
                 <ul class="menu-inner">
-                    <li class="menu-item"><a href="#" class="menu-link">Contact</a></li>
+                    <li class="menu-item"><a href="http://localhost:3000/" class="menu-link">Contact</a></li>
                     <li class="menu-item"><a href="#" class="menu-link">About</a></li>
                     <?php if (isset($_SESSION['user_email'])) { ?>
                         <form action="./logout.php">
