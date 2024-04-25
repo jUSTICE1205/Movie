@@ -67,13 +67,15 @@ const App = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
     try {
       const url = "http://localhost:81/movie/contact.php";
-      let fdata = new formData();
-      fdata.append("name", formData[0]);
-      fdata.append("email", formData[1]);
-      fdata.append("message", formData[2]);
+      let fdata = new FormData();
+      // fdata.append("name", formData[0]);
+      // fdata.append("email", formData[1]);
+      // fdata.append("message", formData[2]);
+      fdata.append("name", formData.name);
+      fdata.append("email", formData.email);
+      fdata.append("message", formData.message);
       axios.post(url, fdata);
     } catch (error) {
       console.error("There was an error with the Axios request:", error);
