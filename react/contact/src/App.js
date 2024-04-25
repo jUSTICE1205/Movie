@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios"; // Import Axios
 
 /** Components */
 const Card = ({ children }) => (
@@ -9,7 +10,13 @@ const Card = ({ children }) => (
   </div>
 );
 
-const Form = ({ children }) => <form className="form">{children}</form>;
+const Form = (
+  { children, onSubmit } // Pass onSubmit prop to Form
+) => (
+  <form className="form" onSubmit={onSubmit}>
+    {children}
+  </form>
+);
 
 const TextInput = ({ name, label, value, onChange }) => (
   <div className="text-input">
@@ -62,21 +69,14 @@ const App = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:81/movie/contact.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const data = await response.text();
-      console.log(data);
-      // Handle successful response
+      const url = "http://localhost:81/movie/contact.php";
+      let fdata = new formData();
+      fdata.append("name", formData[0]);
+      fdata.append("email", formData[1]);
+      fdata.append("message", formData[2]);
+      axios.post(url, fdata);
     } catch (error) {
-      console.error("There was an error with the fetch operation:", error);
+      console.error("There was an error with the Axios request:", error);
     }
   };
 
