@@ -11,4 +11,3 @@ if (!empty($query)) {
 } else {
     echo json_encode(array('error' => 'Query parameter is required'));
 }
-?>
